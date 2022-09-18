@@ -142,7 +142,11 @@ doupdate_core(){
 	Arch="mips64_softfloat"
 	;;
 	"arm")
-	Arch="arm"
+	if [ `uname -m` = "armv7l" ]; then
+		Arch="armv5"
+	else
+		Arch="armv7"
+	fi
 	;;
 	"aarch64")
 	Arch="arm64"
@@ -153,9 +157,7 @@ doupdate_core(){
 	EXIT 1
 	;;
 	"powerpc64")
-	Arch="ppc64"
-	echo -e "error not support $Archt" 
-	EXIT 1
+	Arch="ppc64le"
 	;;
 	*)
 	echo -e "error not support $Archt if you can use offical release please issue a bug" 
